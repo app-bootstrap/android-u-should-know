@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Following the standard color palette given from google-->
+    <!--https://material.google.com/style/color.html#color-color-schemes-->
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#9E9E9E</color>
+    <color name="colorAccent">#F44336</color>
+</resources>

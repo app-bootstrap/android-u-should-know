@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_hardware"
+            android:icon="@drawable/ic_menu_hard_ware"
+            android:title="Hard Ware Control" />
+        <item
+            android:id="@+id/nav_image_cache"
+            android:icon="@drawable/ic_menu_image_cache"
+            android:title="Image Cache" />
+        <item
+            android:id="@+id/nav_concurrency"
+            android:icon="@drawable/ic_menu_concurrency"
+            android:title="Concurrency" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Misc" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_cross_app"
+                android:icon="@drawable/ic_menu_cross_app"
+                android:title="Cross App" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_network"
+                android:title="Network" />
+        </menu>
+    </item>
+
+    <item android:title="UI Widgets">
+        <menu>
+            <item android:id="@+id/nav_list_view"
+                android:icon="@drawable/ic_menu_list_view"
+                android:title="List View"/>
+            <item android:id="@+id/nav_emoji_keyboard"
+                android:icon="@drawable/ic_menu_emoji"
+                android:title="Emoj Keyboard"/>
+            <item android:id="@+id/nav_image_view"
+                android:icon="@drawable/ic_menu_image_view"
+                android:title="Image View"/>
+        </menu>
+    </item>
+
+</menu>

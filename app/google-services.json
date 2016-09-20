@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "224928605426",
+    "project_id": "android-utils"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224928605426:android:b44462268f0ad5b7",
+        "android_client_info": {
+          "package_name": "com.gz.android_utils"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxSmnrIDk5fD8eBexgmoiUsZJRWpNKVO4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-84381619-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
