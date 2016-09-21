@@ -36,13 +36,10 @@
     <item android:title="UI Widgets">
         <menu>
             <item android:id="@+id/nav_list_view"
-                android:icon="@drawable/ic_menu_list_view"
                 android:title="List View"/>
             <item android:id="@+id/nav_emoji_keyboard"
-                android:icon="@drawable/ic_menu_emoji"
                 android:title="Emoj Keyboard"/>
             <item android:id="@+id/nav_image_view"
-                android:icon="@drawable/ic_menu_image_view"
                 android:title="Image View"/>
         </menu>
     </item>
