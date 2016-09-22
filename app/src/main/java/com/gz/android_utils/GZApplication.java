@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+import com.gz.android_utils.concurrency.loop.GZUILoop;
 
 /**
  * created by Zhao Yue, at 19/9/16 - 10:39 AM
@@ -13,9 +14,7 @@ public class GZApplication extends Application {
 
     private Tracker mTracker;
 
-/**
- *  Provide overall context management
- */
+    /*Provide default tracker */
     synchronized public Tracker getDefaultTracker() {
 
         if (mTracker == null) {
@@ -25,6 +24,14 @@ public class GZApplication extends Application {
         }
 
         return mTracker;
+    }
+
+    /*Provide configuration during initialization of application */
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        GZUILoop.getInstance().init();
     }
 }
 

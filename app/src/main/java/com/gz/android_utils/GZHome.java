@@ -29,31 +29,9 @@ public class GZHome extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        /** Check about local analytic tool */
-        Log.i(GZConsts.ApplicationTag,"Home app initialization");
-        GZApplication application = (GZApplication) getApplication();
-        Tracker tracker = application.getDefaultTracker();
-        tracker.setScreenName(this.getLocalClassName());
-        tracker.send(new HitBuilders.ScreenViewBuilder().build());
-        GoogleAnalytics.getInstance(this).dispatchLocalHits();
+        this.buildFloatAction();
+        this.buildDrawerBehaviour();
+        this.updateGAEvents();
     }
 
     @Override
@@ -106,5 +84,46 @@ public class GZHome extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * View Customization
+     */
+
+    private void buildFloatAction() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+    }
+
+    private void buildDrawerBehaviour() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    /**
+     * GA event update
+     */
+    private void updateGAEvents() {
+        /** Check about local analytic tool */
+        Log.i(GZConsts.ApplicationTag, "Home app initialization");
+        GZApplication application = (GZApplication) getApplication();
+        Tracker tracker = application.getDefaultTracker();
+        tracker.setScreenName(this.getLocalClassName());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+        GoogleAnalytics.getInstance(this).dispatchLocalHits();
     }
 }

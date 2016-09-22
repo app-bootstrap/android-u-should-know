@@ -84,7 +84,7 @@ public class GZGoogleAnalytic {
 
     /**
      * Work with dimensions and metrics
-     *
+     * <p/>
      * In the most basic reports, you usually want to get one or more metrics for one dimension.
      * A dimension can be measured in several metrics, but not the other way around.
      * That's why the metrics are the columns, the dimensions are the rows in every report table.
@@ -92,7 +92,7 @@ public class GZGoogleAnalytic {
      * A dimension is what you are applying the metric to: the Page Title, the Page Path, the Event Label.
      * So for example, the dimension 'Page Title' can be analyzed via the metrics 'Pageviews', 'Unique Pageviews', 'Time on Page', 'Exit Rate' and so on.
      * So a metric is a way to look at a dimension.
-     * */
+     */
 
     public static void customizeDimensionAndMetrics() {
 
@@ -100,9 +100,9 @@ public class GZGoogleAnalytic {
 
     /**
      * Enable automatic activity measurement
-     *
+     * <p/>
      * https://developers.google.com/analytics/devguides/collection/android/v4/screens
-     * */
+     */
     public static void automaticScreen() {
 
     }
