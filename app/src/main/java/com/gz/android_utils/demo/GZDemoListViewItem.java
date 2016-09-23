@@ -16,13 +16,18 @@ import com.gz.android_utils.ui.listview.GZListViewBaseItem;
  * created by Zhao Yue, at 23/9/16 - 4:02 PM
  * for further issue, please contact: zhaoy.samuel@gmail.com
  */
-public class GZDemiListViewItem extends GZListViewBaseItem {
+public class GZDemoListViewItem extends GZListViewBaseItem {
 
     /*GZDemoListView item Data structure provided in the structure */
     public static class GZDemoListViewItemData {
         private String title;
         private String desc;
         private Bitmap bitmap;
+
+        public GZDemoListViewItemData(String title, String desc) {
+            this.title = title;
+            this.desc = desc;
+        }
     }
 
     /*Provide simple optimization on holder pattern */
@@ -33,6 +38,11 @@ public class GZDemiListViewItem extends GZListViewBaseItem {
     }
 
     public GZDemoListViewItemData data;
+
+    public GZDemoListViewItem(GZDemoListViewItemData data) {
+        super();
+        this.data = data;
+    }
 
     @Override
     protected long getItemId() {

@@ -53,7 +53,7 @@ public class GZListViewAdapter extends BaseAdapter {
     }
 
     /* Check adapter data management */
-    public synchronized void updateData(List<GZListViewBaseItem> items) {
+    public synchronized void updateData(List<? extends GZListViewBaseItem> items) {
         if (items != null) {
             baseItems = new ArrayList<>();
             for (GZListViewBaseItem item : items) {

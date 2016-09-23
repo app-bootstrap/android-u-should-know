@@ -18,9 +18,30 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.gz.android_utils.config.GZConsts;
+import com.gz.android_utils.demo.GZDemoListViewItem;
+import com.gz.android_utils.ui.listview.GZListView;
+import com.gz.android_utils.ui.listview.GZListViewAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GZHome extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    /* List view items for each feature */
+    private List<GZDemoListViewItem> hardWareControlFeatures;
+    private List<GZDemoListViewItem> cacheFeatures;
+
+
+    private GZListViewAdapter adapter = new GZListViewAdapter();
+
+
+    /* Initialization block */
+    {
+        hardWareControlFeatures = new ArrayList<>();
+        hardWareControlFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("Battery","Measure the battery status")));
+        hardWareControlFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("System Info","Measure the system information")));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +49,10 @@ public class GZHome extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        GZListView listView = (GZListView)findViewById(R.id.home_list_view);
+        adapter.updateData(hardWareControlFeatures);
+        listView.setAdapter(this.adapter);
+
 
         this.buildFloatAction();
         this.buildDrawerBehaviour();
