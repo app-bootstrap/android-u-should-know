@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,10 +52,10 @@ public class GZDemoListViewItem extends GZListViewBaseItem {
 
     @NonNull
     @Override
-    protected View generateContentView() {
+    protected View generateContentView(ViewGroup parent) {
         // Inflater logic
         LayoutInflater inflater = (LayoutInflater) GZApplication.sharedInstance().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE );;
-        View view =  inflater.inflate(R.layout.home_demo_list_row, null);
+        View view =  inflater.inflate(R.layout.home_demo_list_row, parent, false);
 
         // View holder design pattern
         GZDemoListViewItemHolder holder = new GZDemoListViewItemHolder();

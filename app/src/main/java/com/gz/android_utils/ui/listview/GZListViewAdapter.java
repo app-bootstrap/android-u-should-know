@@ -42,7 +42,7 @@ public class GZListViewAdapter extends BaseAdapter {
 
             /* Generate content view */
             if (convertView == null) {
-                convertView = item.generateContentView();
+                convertView = item.generateContentView(parent);
             }
 
             /* Update view content */
