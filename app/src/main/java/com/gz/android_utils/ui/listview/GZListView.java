@@ -12,7 +12,6 @@ import android.widget.ListView;
  */
 public class GZListView extends ListView{
 
-
     public GZListView(Context context) {
         super(context);
     }

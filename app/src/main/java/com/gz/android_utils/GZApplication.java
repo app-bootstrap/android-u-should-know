@@ -6,6 +6,8 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.gz.android_utils.concurrency.loop.GZUILoop;
 
+import java.lang.ref.WeakReference;
+
 /**
  * created by Zhao Yue, at 19/9/16 - 10:39 AM
  * for further issue, please contact: zhaoy.samuel@gmail.com
@@ -13,6 +15,11 @@ import com.gz.android_utils.concurrency.loop.GZUILoop;
 public class GZApplication extends Application {
 
     private Tracker mTracker;
+    private static WeakReference<GZApplication> application;
+
+    public static GZApplication sharedInstance() {
+        return GZApplication.application.get();
+    }
 
     /*Provide default tracker */
     synchronized public Tracker getDefaultTracker() {
@@ -32,6 +39,7 @@ public class GZApplication extends Application {
     public void onCreate() {
         super.onCreate();
         GZUILoop.getInstance().init();
+        GZApplication.application = new WeakReference<GZApplication>(this);
     }
 }
 

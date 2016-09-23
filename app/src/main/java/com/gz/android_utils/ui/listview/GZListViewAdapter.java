@@ -14,7 +14,7 @@ import java.util.List;
  * created by Zhao Yue, at 22/9/16 - 6:40 PM
  * for further issue, please contact: zhaoy.samuel@gmail.com
  */
-public class GZListViewAdapter extends BaseAdapter{
+public class GZListViewAdapter extends BaseAdapter {
 
     private List<GZListViewBaseItem> baseItems;
 
@@ -36,8 +36,20 @@ public class GZListViewAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO further work on this parts logic
-        return null;
+        if (baseItems != null && baseItems.size() > 0) {
+
+            GZListViewBaseItem item = baseItems.get(position);
+
+            /* Generate content view */
+            if (convertView == null) {
+                convertView = item.generateContentView();
+            }
+
+            /* Update view content */
+            item.onContentViewUpdate(convertView);
+        }
+
+        return convertView;
     }
 
     /* Check adapter data management */
