@@ -57,7 +57,7 @@ public class GZHome extends AppCompatActivity
         GZListView listView = (GZListView)findViewById(R.id.home_list_view);
         adapter.updateData(hardWareControlFeatures);
         listView.setAdapter(this.adapter);
-
+        listView.setEmptyView(findViewById(R.id.home_demo_list_view_empty));
 
         this.buildFloatAction();
         this.buildDrawerBehaviour();
@@ -125,11 +125,10 @@ public class GZHome extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "For any problem, create a issue on git:SamuelZhaoY/Android-CommonUtils", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Git:SamuelZhaoY/Android-CommonUtils", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-
     }
 
     private void buildDrawerBehaviour() {
