@@ -41,6 +41,11 @@ public class GZHome extends AppCompatActivity
         hardWareControlFeatures = new ArrayList<>();
         hardWareControlFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("Battery","Measure the battery status")));
         hardWareControlFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("System Info","Measure the system information")));
+
+        cacheFeatures = new ArrayList<>();
+        cacheFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("Image Cache","Cache of current user")));
+        cacheFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("Regular Cache","Regular LRU Cache")));
+        cacheFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("User Preference","Preference based on user identity")));
     }
 
     @Override
@@ -93,17 +98,17 @@ public class GZHome extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_hardware) {
-
-        } else if (id == R.id.nav_image_cache) {
-
+            adapter.updateData(hardWareControlFeatures);
+        } else if (id == R.id.nav_cache) {
+            adapter.updateData(cacheFeatures);
         } else if (id == R.id.nav_concurrency) {
-
+            adapter.clearData();
         } else if (id == R.id.nav_manage) {
-
+            adapter.clearData();
         } else if (id == R.id.nav_cross_app) {
-
+            adapter.clearData();
         } else if (id == R.id.nav_send) {
-
+            adapter.clearData();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -120,7 +125,7 @@ public class GZHome extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "For any problem, create a issue on git:SamuelZhaoY/Android-CommonUtils", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

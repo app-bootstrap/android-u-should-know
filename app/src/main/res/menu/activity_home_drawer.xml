@@ -7,7 +7,7 @@
             android:icon="@drawable/ic_menu_hard_ware"
             android:title="Hard Ware Control" />
         <item
-            android:id="@+id/nav_image_cache"
+            android:id="@+id/nav_cache"
             android:icon="@drawable/ic_menu_image_cache"
             android:title="Image Cache" />
         <item
