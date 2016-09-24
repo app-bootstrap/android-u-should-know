@@ -64,6 +64,7 @@ public class GZAppLogger {
 
     public static void e(Throwable e) {
 
+        // If there is a exception and the config is open, write down the exception stack track and upload
         if (GZAppLoggerConfig.DEBUG_SHOW) {
             //TODO exception reporting logic
             return;
