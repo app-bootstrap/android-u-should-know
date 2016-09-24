@@ -17,6 +17,17 @@ public class GZCrashHandler implements Thread.UncaughtExceptionHandler {
     public static final String EXCEPTION_FILE_NAME_PREFIX = "exception_log";
     private boolean _enabled = true;
 
+    public static GZCrashHandler crashHandler;
+
+    public static GZCrashHandler sharedInstance () {
+        if (crashHandler == null) {
+            synchronized (GZCrashHandler.class) {
+                crashHandler = new GZCrashHandler();
+            }
+        }
+        return crashHandler;
+    }
+
     public void install() {
         _defaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
