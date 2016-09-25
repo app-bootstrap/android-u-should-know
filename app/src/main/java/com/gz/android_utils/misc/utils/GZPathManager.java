@@ -1,0 +1,79 @@
+package com.gz.android_utils.misc.utils;
+
+import android.os.Environment;
+
+import com.gz.android_utils.GZApplication;
+import com.gz.android_utils.misc.log.GZAppLogger;
+
+import java.io.File;
+import java.io.IOException;
+
+/**
+ * created by Zhao Yue, at 25/9/16 - 2:10 PM
+ * for further issue, please contact: zhaoy.samuel@gmail.com
+ */
+public class GZPathManager {
+
+    public static GZPathManager mInstance;
+
+    public static GZPathManager sharedInstance() {
+        if (mInstance == null) {
+            mInstance = new GZPathManager();
+        }
+
+        return mInstance;
+    }
+
+    /*Path Manager Configuration*/
+    private String rootPath;
+    private String userPath;
+    private String imageDirPath;
+
+    private  GZPathManager() {
+        rootPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + GZApplication.ApplicationName;
+        reset();
+    }
+
+    private void reset() {
+        checkFolder(rootPath);
+        userPath = null;
+    }
+
+    private void checkFolder(String folder) {
+        File f = new File(folder);
+        if (f.isDirectory() && f.exists()) {
+            return;
+        }
+        boolean b = f.mkdirs();
+        if (!b) {
+            GZAppLogger.e("create folder:%s error", folder);
+        } else {
+            try {
+                File file = new File(f.getPath() + File.separator + ".nomedia");
+                if (!file.exists())
+                    file.createNewFile();
+            } catch (IOException e) {
+                GZAppLogger.e(e.getMessage());
+            }
+        }
+    }
+
+    public synchronized String getUserPath() {
+        if (userPath == null) {
+            userPath = rootPath + File.separator + GZApplication.ApplicationUserIdentifier;
+            checkFolder(userPath);
+        }
+
+        return userPath;
+    }
+
+    public synchronized String getImageDirPath() {
+        if (imageDirPath == null) {
+            imageDirPath = getUserPath() + File.separator + "image";
+            checkFolder(imageDirPath);
+        }
+
+        return imageDirPath
+    }
+}
+

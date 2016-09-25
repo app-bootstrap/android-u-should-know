@@ -17,6 +17,12 @@ public class GZApplication extends Application {
     private Tracker mTracker;
     private static WeakReference<GZApplication> application;
 
+    /*Provide const updates, customize this const further */
+    public static String ApplicationName = "GZ-Android-Common";
+    public static String ApplicationUserIdentifier = "N.A.";
+
+
+    /*Shared singleton instance */
     public static GZApplication sharedInstance() {
         return GZApplication.application.get();
     }
@@ -34,7 +40,6 @@ public class GZApplication extends Application {
     }
 
     /*Provide configuration during initialization of application */
-
     @Override
     public void onCreate() {
         super.onCreate();

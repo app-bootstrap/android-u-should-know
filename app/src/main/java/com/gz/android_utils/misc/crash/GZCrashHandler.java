@@ -98,7 +98,6 @@ public class GZCrashHandler implements Thread.UncaughtExceptionHandler {
 
     // TODO Log writing
     protected static void writeToLog(String fileId, String log) {
-        //ensure the crash folder exists
 //        String path = BBPathManager.getInstance().getCrashReportPath(fileId);
 //        BBCrashLogInfo logInfo = new BBCrashLogInfo();
 //        logInfo.setUserInfo(BBMyInfoManager.getInstance().getName(), BBMyInfoManager.getInstance().getId());
