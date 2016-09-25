@@ -28,6 +28,7 @@ public class GZPathManager {
     private String rootPath;
     private String userPath;
     private String imageDirPath;
+    private String multiMediaDirPath;
 
     private  GZPathManager() {
         rootPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + GZApplication.ApplicationName;
@@ -37,6 +38,8 @@ public class GZPathManager {
     private void reset() {
         checkFolder(rootPath);
         userPath = null;
+        imageDirPath = null;
+        multiMediaDirPath = null;
     }
 
     private void checkFolder(String folder) {
@@ -73,7 +76,16 @@ public class GZPathManager {
             checkFolder(imageDirPath);
         }
 
-        return imageDirPath
+        return imageDirPath;
+    }
+
+    public synchronized String getMultiMediaDirPath() {
+        if (multiMediaDirPath == null) {
+            multiMediaDirPath = getUserPath() + File.separator + "media";
+            checkFolder(multiMediaDirPath);
+        }
+
+        return multiMediaDirPath;
     }
 }
 
