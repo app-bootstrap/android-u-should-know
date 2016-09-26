@@ -17,7 +17,7 @@ public class GZThreadRunnable implements Runnable{
         try{
             if(task != null)
                 task.run();
-        }catch(Exception | Error exception) {
+        } catch(Exception | Error exception) {
             GZAppLogger.e(exception);
         }
         task = null;

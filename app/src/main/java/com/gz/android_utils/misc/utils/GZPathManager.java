@@ -28,6 +28,7 @@ public class GZPathManager {
     private String rootPath;
     private String userPath;
     private String imageDirPath;
+    private String commonDirPath;
     private String multiMediaDirPath;
 
     private  GZPathManager() {
@@ -86,6 +87,15 @@ public class GZPathManager {
         }
 
         return multiMediaDirPath;
+    }
+
+    public synchronized String getCommonDirPath() {
+        if (commonDirPath == null) {
+            commonDirPath = getUserPath() + File.separator + "commonDir";
+            checkFolder(commonDirPath);
+        }
+
+        return commonDirPath;
     }
 }
 
