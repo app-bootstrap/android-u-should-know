@@ -19,4 +19,7 @@ public abstract class GZListViewBaseItem {
 
     /* Called to update the content view display information */
     protected abstract void onContentViewUpdate(View t);
+
+    /* Perform on item click */
+    protected abstract void onItemClicked();
 }

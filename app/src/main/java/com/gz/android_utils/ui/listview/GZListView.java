@@ -4,6 +4,9 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 /**
@@ -27,5 +30,19 @@ public class GZListView extends ListView{
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public GZListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    @Override
+    public void setAdapter(final ListAdapter adapter) {
+        super.setAdapter(adapter);
+        if (adapter.getClass().isAssignableFrom(GZListViewAdapter.class)) {
+            this.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    GZListViewBaseItem item = (GZListViewBaseItem) adapter.getItem(position);
+                    item.onItemClicked();
+                }
+            });
+        }
     }
 }

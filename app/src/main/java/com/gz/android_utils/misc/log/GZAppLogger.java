@@ -14,7 +14,7 @@ import java.io.Writer;
  */
 public class GZAppLogger {
 
-    private static String APP_LOG_FLAG = "";
+    private static String APP_LOG_FLAG = "GZAppDemo";
 
     public static void e(String format, Object... args) {
         if (!GZAppLoggerConfig.NO_LOG) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.gz.android_utils.GZApplication;
 import com.gz.android_utils.R;
+import com.gz.android_utils.misc.log.GZAppLogger;
 import com.gz.android_utils.ui.listview.GZListViewBaseItem;
 
 /**
@@ -72,5 +73,10 @@ public class GZDemoListViewItem extends GZListViewBaseItem {
         holder.titleView.setText(data.title);
         holder.descriptionView.setText(data.desc);
         //TODO provide bitmap processor & cache
+    }
+
+    @Override
+    protected void onItemClicked() {
+        GZAppLogger.d("item clicked");
     }
 }
