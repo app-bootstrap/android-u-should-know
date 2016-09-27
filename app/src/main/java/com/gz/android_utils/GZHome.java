@@ -13,14 +13,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.gz.android_utils.config.GZConsts;
 import com.gz.android_utils.demo.GZDemoListViewItem;
+import com.gz.android_utils.hardware.GZBuildInfo;
 import com.gz.android_utils.ui.listview.GZListView;
 import com.gz.android_utils.ui.listview.GZListViewAdapter;
+import com.gz.android_utils.ui.popup.GZPopup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +35,21 @@ public class GZHome extends AppCompatActivity
     /* List view items for each feature */
     private List<GZDemoListViewItem> hardWareControlFeatures;
     private List<GZDemoListViewItem> cacheFeatures;
+    private GZDemoListViewItem.GZDemoListViewItemClickListener listener = new GZDemoListViewItem.GZDemoListViewItemClickListener() {
+        @Override
+        public void onItemClicked(GZDemoListViewItem.GZDemoListViewItemData data) {
+            if (data != null) {
+                if (data.title.equals("Battery")) {
 
+                } else if (data.title.equals("System Info")) {
+                    View view = getLayoutInflater().inflate(R.layout.home_performance_pop, null);
+                    TextView content = (TextView) view.findViewById(R.id.performance_popup_content);
+                    content.setText(GZBuildInfo.getBuildInfoDesc(true));
+                    GZPopup.show(view, GZHome.this, "SystemInfo");
+                }
+            }
+        }
+    };
 
     private GZListViewAdapter adapter = new GZListViewAdapter();
 
@@ -58,6 +76,12 @@ public class GZHome extends AppCompatActivity
         adapter.updateData(hardWareControlFeatures);
         listView.setAdapter(this.adapter);
         listView.setEmptyView(findViewById(R.id.home_demo_list_view_empty));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listener.onItemClicked(((GZDemoListViewItem)adapter.getItem(position)).data);
+            }
+        });
 
         this.buildFloatAction();
         this.buildDrawerBehaviour();
@@ -119,7 +143,6 @@ public class GZHome extends AppCompatActivity
     /**
      * View Customization
      */
-
     private void buildFloatAction() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

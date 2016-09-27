@@ -20,11 +20,15 @@ import com.gz.android_utils.ui.listview.GZListViewBaseItem;
  */
 public class GZDemoListViewItem extends GZListViewBaseItem {
 
+    public static abstract class GZDemoListViewItemClickListener {
+        public abstract void onItemClicked(GZDemoListViewItemData data);
+    }
+
     /*GZDemoListView item Data structure provided in the structure */
     public static class GZDemoListViewItemData {
-        private String title;
-        private String desc;
-        private Bitmap bitmap;
+        public String title;
+        public String desc;
+        public Bitmap bitmap;
 
         public GZDemoListViewItemData(String title, String desc) {
             this.title = title;
@@ -39,6 +43,7 @@ public class GZDemoListViewItem extends GZListViewBaseItem {
         private ImageView rowIcon;
     }
 
+    public GZDemoListViewItemClickListener listener;
     public GZDemoListViewItemData data;
 
     public GZDemoListViewItem(GZDemoListViewItemData data) {
@@ -72,11 +77,13 @@ public class GZDemoListViewItem extends GZListViewBaseItem {
         GZDemoListViewItemHolder holder = (GZDemoListViewItemHolder) t.getTag();
         holder.titleView.setText(data.title);
         holder.descriptionView.setText(data.desc);
-        //TODO provide bitmap processor & cache
     }
 
     @Override
     protected void onItemClicked() {
         GZAppLogger.d("item clicked");
+        if (listener != null) {
+            listener.onItemClicked(data);
+        }
     }
 }
