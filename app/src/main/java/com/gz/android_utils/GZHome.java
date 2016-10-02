@@ -21,6 +21,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.gz.android_utils.config.GZConsts;
 import com.gz.android_utils.demo.GZDemoListViewItem;
+import com.gz.android_utils.hardware.GZBatteryManager;
 import com.gz.android_utils.hardware.GZBuildInfo;
 import com.gz.android_utils.ui.listview.GZListView;
 import com.gz.android_utils.ui.listview.GZListViewAdapter;
@@ -40,7 +41,12 @@ public class GZHome extends AppCompatActivity
         public void onItemClicked(GZDemoListViewItem.GZDemoListViewItemData data) {
             if (data != null) {
                 if (data.title.equals("Battery")) {
-
+                    View view = getLayoutInflater().inflate(R.layout.home_performance_pop, null);
+                    TextView title = (TextView) view.findViewById(R.id.performance_popup_title);
+                    title.setText("Battery Info");
+                    TextView content = (TextView) view.findViewById(R.id.performance_popup_content);
+                    content.setText(GZBatteryManager.sharedInstance().getBatteryInfo());
+                    GZPopup.show(view, GZHome.this, "BatteryInfo");
                 } else if (data.title.equals("System Info")) {
                     View view = getLayoutInflater().inflate(R.layout.home_performance_pop, null);
                     TextView content = (TextView) view.findViewById(R.id.performance_popup_content);

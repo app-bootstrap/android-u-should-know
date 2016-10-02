@@ -16,7 +16,7 @@ public class GZBatteryManager {
 
     private static GZBatteryManager m_instance;
 
-    private static GZBatteryManager sharedInstance() {
+    public static GZBatteryManager sharedInstance() {
         if (m_instance == null) {
             m_instance = new GZBatteryManager();
             IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
@@ -54,4 +54,13 @@ public class GZBatteryManager {
         return batteryPct;
     }
 
+    public String getBatteryInfo() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("AC Charging : " + this.isAcCharging() + "\n").
+                append("USB Charging: " + this.isUsbCharging() + "\n").
+                append(("Charging: " + this.isCharging() + "\n")).
+                append("Battery Level: " + this.getBatteryLevel());
+
+        return builder.toString();
+    }
 }
