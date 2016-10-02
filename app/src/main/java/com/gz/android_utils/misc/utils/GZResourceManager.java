@@ -157,5 +157,4 @@ public class GZResourceManager {
         Typeface typeFace=Typeface.createFromAsset(GZApplication.sharedInstance().getAssets(),"fonts/Gill_Sans.ttf");
         return typeFace;
     }
-
 }
