@@ -97,5 +97,10 @@ public class GZPathManager {
 
         return commonDirPath;
     }
+
+    public boolean isFileExists(String fullPath) {
+        File f = new File(fullPath);
+        return f.isFile() && f.exists();
+    }
 }
 
