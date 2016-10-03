@@ -23,6 +23,7 @@ import com.gz.android_utils.config.GZConsts;
 import com.gz.android_utils.demo.GZDemoListViewItem;
 import com.gz.android_utils.hardware.GZBatteryManager;
 import com.gz.android_utils.hardware.GZBuildInfo;
+import com.gz.android_utils.misc.utils.GZToastManager;
 import com.gz.android_utils.ui.listview.GZListView;
 import com.gz.android_utils.ui.listview.GZListViewAdapter;
 import com.gz.android_utils.ui.popup.GZPopup;
@@ -36,6 +37,8 @@ public class GZHome extends AppCompatActivity
     /* List view items for each feature */
     private List<GZDemoListViewItem> hardWareControlFeatures;
     private List<GZDemoListViewItem> cacheFeatures;
+    private List<GZDemoListViewItem> miscFeatures;
+
     private GZDemoListViewItem.GZDemoListViewItemClickListener listener = new GZDemoListViewItem.GZDemoListViewItemClickListener() {
         @Override
         public void onItemClicked(GZDemoListViewItem.GZDemoListViewItemData data) {
@@ -52,6 +55,9 @@ public class GZHome extends AppCompatActivity
                     TextView content = (TextView) view.findViewById(R.id.performance_popup_content);
                     content.setText(GZBuildInfo.getBuildInfoDesc(true));
                     GZPopup.show(view, GZHome.this, "SystemInfo");
+                } else if (data.title.equals("File Manager")) {
+                    // Jump to file browser
+                    GZToastManager.show("Redirect to file browser");
                 }
             }
         }
@@ -70,6 +76,9 @@ public class GZHome extends AppCompatActivity
         cacheFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("Image Cache","Cache of current user")));
         cacheFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("Regular Cache","Regular LRU Cache")));
         cacheFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("User Preference","Preference based on user identity")));
+
+        miscFeatures = new ArrayList<>();
+        miscFeatures.add(new GZDemoListViewItem(new GZDemoListViewItem.GZDemoListViewItemData("File Manager","Browse file list")));
     }
 
     @Override
@@ -134,7 +143,7 @@ public class GZHome extends AppCompatActivity
         } else if (id == R.id.nav_concurrency) {
             adapter.clearData();
         } else if (id == R.id.nav_manage) {
-            adapter.clearData();
+            adapter.updateData(miscFeatures);
         } else if (id == R.id.nav_cross_app) {
             adapter.clearData();
         } else if (id == R.id.nav_send) {

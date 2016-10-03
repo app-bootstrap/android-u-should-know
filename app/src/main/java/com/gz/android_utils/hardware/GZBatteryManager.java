@@ -12,6 +12,14 @@ import com.gz.android_utils.GZApplication;
  */
 public class GZBatteryManager {
 
+    /**
+    *Intent - is a message passing mechanism between components of android, except for Content Provider. You can use intent to start any component.
+
+     Sticky Intent - Sticks with android, for future broad cast listeners. For example if BATTERY_LOW event occurs then that intent will be stick with android so that if any future user requested for BATTER_LOW, it will be fired;
+
+     Pending Intent - If you want some one to perform any Intent operation at future point of time on behalf of you, then we will use Pending Intent.
+    * */
+
     private Intent m_intent;
 
     private static GZBatteryManager m_instance;
