@@ -1,5 +1,6 @@
 package com.gz.android_utils;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -58,13 +59,15 @@ public class GZHome extends AppCompatActivity
                 } else if (data.title.equals("File Manager")) {
                     // Jump to file browser
                     GZToastManager.show("Redirect to file browser");
+
+                    Intent intent = new Intent(GZHome.this, GZFileBrowserActivity.class);
+                    startActivity(intent);
                 }
             }
         }
     };
 
     private GZListViewAdapter adapter = new GZListViewAdapter();
-
 
     /* Initialization block */
     {
@@ -95,6 +98,14 @@ public class GZHome extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 listener.onItemClicked(((GZDemoListViewItem)adapter.getItem(position)).data);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                GZToastManager.show("Long click");
+                return true;
             }
         });
 

@@ -3,6 +3,7 @@
     package="com.gz.android_utils">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
@@ -22,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".GZFileBrowserActivity"
+            android:label="File browser"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!-- Google analytics solution  -->
 
