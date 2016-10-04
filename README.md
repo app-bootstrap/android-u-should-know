@@ -1,6 +1,6 @@
 # Android-CommonUtils
 Common utilities used for android development
-
+```
 ├── Anaglytics
 │   └── GoogleAnalyticAPI Demo
 ├── Cache
@@ -30,7 +30,5 @@ Common utilities used for android development
 │   ├── RecycleView
 │   ├── ListView
 │   ├── EmojiKeyboard
-│   ├── Popup
-
-
-
+│   └── Popup
+```
