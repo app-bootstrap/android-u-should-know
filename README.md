@@ -15,7 +15,7 @@ Common utilities used for android development
 │   ├── UILoop
 │   └── FileLoop
 ├── Network
-│   └── (TODO) Network Task Executor, for both concurrent and serial
+│   └── (TODO) Network Task Executor, for both concurrent and serial, based on volley
 ├── Misc
 │   ├── ImageProcessor
 │   ├── NotifcationCenter
@@ -30,5 +30,6 @@ Common utilities used for android development
 │   ├── RecycleView
 │   ├── ListView
 │   ├── EmojiKeyboard
+│   ├── ReloadableView (Related to network plugins)
 │   └── Popup
 ```
