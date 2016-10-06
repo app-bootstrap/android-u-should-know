@@ -5,4 +5,5 @@
     <item name="ic_menu_concurrency" type="drawable">@android:drawable/ic_media_play</item>
     <item name="ic_menu_cross_app" type="drawable">@android:drawable/ic_menu_share</item>
     <item name="ic_menu_network" type="drawable">@android:drawable/ic_menu_upload</item>
+    <item name="ic_action_btn_back" type="drawable">@android:drawable/ic_menu_upload</item>
 </resources>

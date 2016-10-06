@@ -1,11 +1,13 @@
 package com.gz.android_utils;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.gz.android_utils.concurrency.loop.GZCommonTaskLoop;
 import com.gz.android_utils.misc.log.GZAppLogger;
@@ -39,15 +41,18 @@ public class GZFileBrowserActivity extends AppCompatActivity {
         Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mActionBarToolbar);
         mActionBarToolbar.setTitle("File browser");
+        Drawable drawable = getResources().getDrawable(android.R.drawable.ic_input_delete);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        Intent intent = getIntent();
-        path = intent.getStringExtra("folder_path");
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
 
         GZCommonTaskLoop.getInstance().post(new Runnable() {
             @Override
             public void run() {
-                fileUnits = new ArrayList<FileUnit>();
+                fileUnits = new ArrayList<>();
+
+                Intent intent = getIntent();
+                path = intent.getStringExtra("folder_path");
 
                 if (path == null) {
                     path = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -63,9 +68,21 @@ public class GZFileBrowserActivity extends AppCompatActivity {
                     unit.name = file.getName();
 
                     fileUnits.add(unit);
-                    GZAppLogger.i("Check about file name :%s  with size %d",unit.name,unit.size);
+                    GZAppLogger.i("Check about file name :%s  with size %d", unit.name, unit.size);
                 }
+
+                // After initialization, finish the current configuration with the corresponding recycler view
+
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

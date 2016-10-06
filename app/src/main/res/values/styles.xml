@@ -5,9 +5,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="actionBarWidgetTheme">@style/WidgetStyle</item>
-
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -18,13 +15,4 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@android:color/white</item>
-    </style>
-
-    <style name="WidgetStyle" parent="style/ThemeOverlay.AppCompat.Light">
-        <item name="colorControlNormal">@android:color/white</item>
-    </style>
-
 </resources>
