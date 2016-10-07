@@ -1,6 +1,5 @@
 package com.gz.android_utils.ui.listview;
 
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,9 +14,7 @@ public abstract class GZListViewBaseItem {
     }
 
     /* Called to generate the content view */
-    protected abstract
-    @NonNull
-    View generateContentView(ViewGroup parent);
+    protected abstract View generateContentView(ViewGroup parent);
 
     /* Called to update the content view display information */
     protected abstract void onContentViewUpdate(View t);
@@ -29,5 +26,4 @@ public abstract class GZListViewBaseItem {
     protected int getItemViewType() {
         return 0;
     }
-
 }

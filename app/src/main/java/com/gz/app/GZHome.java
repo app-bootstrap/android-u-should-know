@@ -1,4 +1,4 @@
-package com.gz.android_utils;
+package com.gz.app;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.gz.android_utils.GZApplication;
+import com.gz.android_utils.R;
 import com.gz.android_utils.config.GZConsts;
 import com.gz.android_utils.demo.GZDemoListViewItem;
 import com.gz.android_utils.hardware.GZBatteryManager;
@@ -28,6 +30,7 @@ import com.gz.android_utils.misc.utils.GZToastManager;
 import com.gz.android_utils.ui.listview.GZListView;
 import com.gz.android_utils.ui.listview.GZListViewAdapter;
 import com.gz.android_utils.ui.popup.GZPopup;
+import com.gz.app.fileBrowse.GZFileBrowserActivity;
 
 import java.util.ArrayList;
 import java.util.List;

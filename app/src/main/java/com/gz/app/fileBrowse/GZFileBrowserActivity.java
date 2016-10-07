@@ -1,21 +1,32 @@
-package com.gz.android_utils;
+package com.gz.app.fileBrowse;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.gz.android_utils.GZApplication;
+import com.gz.android_utils.R;
 import com.gz.android_utils.concurrency.loop.GZCommonTaskLoop;
+import com.gz.android_utils.concurrency.loop.GZUILoop;
+import com.gz.android_utils.demo.GZBrowserViewItem;
 import com.gz.android_utils.misc.log.GZAppLogger;
 import com.gz.android_utils.misc.utils.GZPathManager;
+import com.gz.android_utils.ui.recycleview.GZRecyclerViewAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * created by Zhao Yue, at 4/10/16 - 8:32 PM
@@ -24,14 +35,9 @@ import java.util.List;
 public class GZFileBrowserActivity extends AppCompatActivity {
 
     private String path;
-    private List<FileUnit> fileUnits;
-
-    private static class FileUnit {
-        private String filePath;
-        private boolean isDir;
-        private long size;
-        private String name;
-    }
+    private List<GZBrowserViewItem> fileUnits;
+    private GZRecyclerViewAdapter adapter;
+    private GZFileBrowserLayoutManager layoutManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +51,7 @@ public class GZFileBrowserActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(drawable);
+        setupRecycleView();
 
         GZCommonTaskLoop.getInstance().post(new Runnable() {
             @Override
@@ -58,23 +65,54 @@ public class GZFileBrowserActivity extends AppCompatActivity {
                     path = Environment.getExternalStorageDirectory().getAbsolutePath();
                 }
 
-                File[] files = GZPathManager.sharedInstance().browseFilesInDir(new File(path));
+                final File[] files = GZPathManager.sharedInstance().browseFilesInDir(new File(path));
 
                 for (File file : files) {
-                    FileUnit unit = new FileUnit();
+                    GZBrowserViewItem.FileUnit unit = new GZBrowserViewItem.FileUnit();
                     unit.isDir = file.isDirectory();
                     unit.filePath = file.getAbsolutePath();
                     unit.size = file.getTotalSpace();
                     unit.name = file.getName();
 
-                    fileUnits.add(unit);
+                    fileUnits.add(new GZBrowserViewItem(unit));
                     GZAppLogger.i("Check about file name :%s  with size %d", unit.name, unit.size);
                 }
 
                 // After initialization, finish the current configuration with the corresponding recycler view
-
+                GZUILoop.getInstance().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.updateRecyclerViewItems(fileUnits);
+                    }
+                });
             }
         });
+    }
+
+    private void setupRecycleView() {
+
+        GZFileBrowserRecyclerView recycleView = (GZFileBrowserRecyclerView) findViewById(R.id.file_dir_recycler_view);
+        adapter = new GZRecyclerViewAdapter();
+        adapter.configForBuilder(new GZRecyclerViewAdapter.GZRecycleViewHolderBuilder() {
+            @Override
+            public GZRecyclerViewAdapter.GZRecyclerViewHolder buildViewHolder(ViewGroup parent, int viewType) {
+                LayoutInflater inflater = (LayoutInflater) GZApplication.sharedInstance().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE );
+
+                if (viewType == 0) {
+                    View view = inflater.inflate(R.layout.home_file_dir_folder_unit, parent, false);
+                    GZBrowserViewItem.ViewHolder viewHolder = new GZBrowserViewItem.ViewHolder(view);
+                    return viewHolder;
+                } else {
+                    View view = inflater.inflate(R.layout.home_file_dir_file_unit, parent, false);
+                    GZBrowserViewItem.ViewHolder viewHolder = new GZBrowserViewItem.ViewHolder(view);
+                    return viewHolder;
+                }
+            }
+        });
+
+        layoutManager = new GZFileBrowserLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        recycleView.setAdapter(adapter);
+        recycleView.setLayoutManager(layoutManager);
     }
 
     @Override

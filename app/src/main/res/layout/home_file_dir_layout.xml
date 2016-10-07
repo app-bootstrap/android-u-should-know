@@ -13,7 +13,7 @@
         app:popupTheme="@style/AppTheme"
         app:titleTextColor="#ffffff" />
 
-    <com.gz.android_utils.ui.recycleview.GZRecycleView
+    <com.gz.app.fileBrowse.GZFileBrowserRecyclerView
         android:id="@+id/file_dir_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
