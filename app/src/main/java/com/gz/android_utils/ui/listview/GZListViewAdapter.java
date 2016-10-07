@@ -35,6 +35,11 @@ public class GZListViewAdapter extends BaseAdapter {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return baseItems.get(position).getItemViewType();
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (baseItems != null && baseItems.size() > 0) {
 

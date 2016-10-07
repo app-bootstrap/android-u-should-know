@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:titleTextColor="#ffffff"
-        app:popupTheme="@style/AppTheme"/>
+        app:popupTheme="@style/AppTheme"
+        app:titleTextColor="#ffffff" />
+
+    <com.gz.android_utils.ui.recycleview.GZRecycleView
+        android:id="@+id/file_dir_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
 </LinearLayout>
