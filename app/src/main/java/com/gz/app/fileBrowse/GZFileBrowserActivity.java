@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.gz.android_utils.GZApplication;
 import com.gz.android_utils.R;
@@ -32,7 +33,7 @@ import java.util.List;
  * created by Zhao Yue, at 4/10/16 - 8:32 PM
  * for further issue, please contact: zhaoy.samuel@gmail.com
  */
-public class GZFileBrowserActivity extends AppCompatActivity {
+public class GZFileBrowserActivity extends AppCompatActivity implements GZBrowserViewItem.onItemClickListener {
 
     private String path;
     private List<GZBrowserViewItem> fileUnits;
@@ -73,8 +74,9 @@ public class GZFileBrowserActivity extends AppCompatActivity {
                     unit.filePath = file.getAbsolutePath();
                     unit.size = file.getTotalSpace();
                     unit.name = file.getName();
-
-                    fileUnits.add(new GZBrowserViewItem(unit));
+                    GZBrowserViewItem item = new GZBrowserViewItem(unit);
+                    item.listener = GZFileBrowserActivity.this;
+                    fileUnits.add(item);
                     GZAppLogger.i("Check about file name :%s  with size %d", unit.name, unit.size);
                 }
 
@@ -82,6 +84,8 @@ public class GZFileBrowserActivity extends AppCompatActivity {
                 GZUILoop.getInstance().post(new Runnable() {
                     @Override
                     public void run() {
+                        TextView textView = (TextView) findViewById(R.id.filePathIndicator);
+                        textView.setText(path);
                         adapter.updateRecyclerViewItems(fileUnits);
                     }
                 });
@@ -122,5 +126,16 @@ public class GZFileBrowserActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(GZBrowserViewItem.FileUnit fileUnit) {
+        if (!fileUnit.isDir) {
+            return;
+        }
+
+        Intent intent = new Intent(GZFileBrowserActivity.this, GZFileBrowserActivity.class);
+        intent.putExtra("folder_path",fileUnit.filePath);
+        startActivity(intent);
     }
 }

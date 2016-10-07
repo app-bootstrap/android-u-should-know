@@ -13,6 +13,10 @@ import com.gz.android_utils.ui.recycleview.GZRecyclerViewAdapter;
  */
 public class GZBrowserViewItem extends GZRecyclerViewAdapter.GZRecyclerViewItem {
 
+    public interface onItemClickListener {
+        public abstract void onItemClick(FileUnit fileUnit);
+    }
+
     public static class FileUnit {
         public String filePath;
         public boolean isDir;
@@ -24,12 +28,14 @@ public class GZBrowserViewItem extends GZRecyclerViewAdapter.GZRecyclerViewItem 
 
         public TextView fileName;
         public TextView fileSize;
+        public View container;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             fileName = (TextView) itemView.findViewById(R.id.folder_name);
             fileSize = (TextView) itemView.findViewById(R.id.folder_size);
+            container = itemView;
 
             if (fileName == null) {
                 fileName = (TextView) itemView.findViewById(R.id.file_name);
@@ -39,6 +45,7 @@ public class GZBrowserViewItem extends GZRecyclerViewAdapter.GZRecyclerViewItem 
     }
 
     public FileUnit fileUnit;
+    public onItemClickListener listener;
 
     public GZBrowserViewItem(FileUnit fileUnit) {
         super();
@@ -50,6 +57,14 @@ public class GZBrowserViewItem extends GZRecyclerViewAdapter.GZRecyclerViewItem 
         ViewHolder holder = (ViewHolder)t;
         holder.fileName.setText(fileUnit.name);
         holder.fileSize.setText(fileUnit.size + "Byte");
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(fileUnit);
+                }
+            }
+        });
     }
 
     @Override
