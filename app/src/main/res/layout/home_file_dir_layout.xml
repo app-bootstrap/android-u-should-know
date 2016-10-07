@@ -16,8 +16,10 @@
     <TextView
         android:id="@+id/filePathIndicator"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="16dp"
+        android:textStyle="italic"
         android:textSize="11dp"
+        android:background="@color/colorPrimaryDark"
         android:textColor="@color/colorPrimary" />
 
     <com.gz.app.fileBrowse.GZFileBrowserRecyclerView
