@@ -25,11 +25,19 @@ Common utilities used for android development
 │   ├── PerformanceTicker
 │   ├── CommonLoop
 │   ├── ResourceManager
+│   ├── Dip2PixConverter
 │   └── FileManager
 ├── UI 
-│   ├── RecycleView
+│   ├── RecycleView (Working on)
+│        ├── GridLayout
+│        ├── ListViewLayout
+│        ├── StaggeringGridLayout
 │   ├── ListView
 │   ├── EmojiKeyboard
 │   ├── ReloadableView (Related to network plugins)
 │   └── Popup
+├── Demo 
+│   ├── Home (Based on Navigation Drawer & GZListView)
+│   ├── File Browser (Based on GZFileManager & GZRecycleView) 
+
 ```
