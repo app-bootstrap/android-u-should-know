@@ -2,11 +2,9 @@ package com.gz.app.fileBrowse;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -22,6 +20,7 @@ import com.gz.android_utils.concurrency.loop.GZUILoop;
 import com.gz.android_utils.demo.GZBrowserViewItem;
 import com.gz.android_utils.misc.log.GZAppLogger;
 import com.gz.android_utils.misc.utils.GZPathManager;
+import com.gz.android_utils.ui.GABaseActivity;
 import com.gz.android_utils.ui.popup.GZPopup;
 import com.gz.android_utils.ui.recycleview.GZRecyclerViewAdapter;
 
@@ -34,7 +33,7 @@ import java.util.List;
  * created by Zhao Yue, at 4/10/16 - 8:32 PM
  * for further issue, please contact: zhaoy.samuel@gmail.com
  */
-public class GZFileBrowserActivity extends AppCompatActivity implements GZBrowserViewItem.onItemClickListener {
+public class GZFileBrowserActivity extends GABaseActivity implements GZBrowserViewItem.onItemClickListener {
 
     private String path;
     private List<GZBrowserViewItem> fileUnits;
@@ -49,10 +48,6 @@ public class GZFileBrowserActivity extends AppCompatActivity implements GZBrowse
         Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mActionBarToolbar);
         mActionBarToolbar.setTitle("File browser");
-        Drawable drawable = getResources().getDrawable(android.R.drawable.ic_input_delete);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(drawable);
         setupRecycleView();
 
         GZCommonTaskLoop.getInstance().post(new Runnable() {

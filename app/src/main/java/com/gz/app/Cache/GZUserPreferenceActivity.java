@@ -1,9 +1,7 @@
 package com.gz.app.Cache;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +11,13 @@ import android.widget.TextView;
 import com.gz.android_utils.GZApplication;
 import com.gz.android_utils.R;
 import com.gz.android_utils.cache.GZBaseSharePreference;
+import com.gz.android_utils.ui.GABaseActivity;
 
 /**
  * created by Zhao Yue, at 10/10/16 - 11:31 AM
  * for further issue, please contact: zhaoy.samuel@gmail.com
  */
-public class GZUserPreferenceActivity extends AppCompatActivity {
+public class GZUserPreferenceActivity extends GABaseActivity {
 
     private Button setUidButton;
     private Button saveButton;
@@ -36,10 +35,6 @@ public class GZUserPreferenceActivity extends AppCompatActivity {
 
         setContentView(R.layout.home_user_pref_demo);
         getSupportActionBar().setTitle("User Pref");
-        Drawable drawable = getResources().getDrawable(android.R.drawable.ic_input_delete);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(drawable);
 
         setUidButton = (Button) findViewById(R.id.set_id_button);
         saveButton = (Button) findViewById(R.id.set_content_button);
