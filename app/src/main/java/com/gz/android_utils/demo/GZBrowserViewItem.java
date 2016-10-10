@@ -15,6 +15,8 @@ public class GZBrowserViewItem extends GZRecyclerViewAdapter.GZRecyclerViewItem 
 
     public interface onItemClickListener {
         public abstract void onItemClick(FileUnit fileUnit);
+
+        public abstract boolean onItemLongClick(FileUnit fileUnit);
     }
 
     public static class FileUnit {
@@ -22,6 +24,10 @@ public class GZBrowserViewItem extends GZRecyclerViewAdapter.GZRecyclerViewItem 
         public boolean isDir;
         public long size;
         public String name;
+
+        public String getDescription() {
+            return "filePath: " + filePath + "\nisDir: " + isDir + "\nsize: " + size;
+        }
     }
 
     public static class ViewHolder extends GZRecyclerViewAdapter.GZRecyclerViewHolder {
@@ -63,6 +69,18 @@ public class GZBrowserViewItem extends GZRecyclerViewAdapter.GZRecyclerViewItem 
                 if (listener != null) {
                     listener.onItemClick(fileUnit);
                 }
+            }
+        });
+
+        holder.container.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                if (listener != null) {
+                    return listener.onItemLongClick(fileUnit);
+                }
+
+                return false;
             }
         });
     }

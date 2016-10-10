@@ -22,6 +22,7 @@ import com.gz.android_utils.concurrency.loop.GZUILoop;
 import com.gz.android_utils.demo.GZBrowserViewItem;
 import com.gz.android_utils.misc.log.GZAppLogger;
 import com.gz.android_utils.misc.utils.GZPathManager;
+import com.gz.android_utils.ui.popup.GZPopup;
 import com.gz.android_utils.ui.recycleview.GZRecyclerViewAdapter;
 
 import java.io.File;
@@ -137,5 +138,20 @@ public class GZFileBrowserActivity extends AppCompatActivity implements GZBrowse
         Intent intent = new Intent(GZFileBrowserActivity.this, GZFileBrowserActivity.class);
         intent.putExtra("folder_path",fileUnit.filePath);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onItemLongClick(GZBrowserViewItem.FileUnit fileUnit) {
+        if (fileUnit!= null && fileUnit.isDir) {
+
+            View view = getLayoutInflater().inflate(R.layout.home_performance_pop, null);
+            TextView content = (TextView) view.findViewById(R.id.performance_popup_content);
+            content.setText(fileUnit.getDescription());
+            GZPopup.show(view, GZFileBrowserActivity.this, "Dir Info");
+
+            return true;
+        }
+
+        return false;
     }
 }
