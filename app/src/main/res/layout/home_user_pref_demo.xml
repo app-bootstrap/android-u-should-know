@@ -1,85 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:padding="20dip"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <TextView
-        android:id="@+id/logFile"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:minHeight="100dip"
-        android:hint="Preference Record"
-        android:maxHeight="400dp"
-        android:background="@color/colorPrimaryDark"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/user_id_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logFile"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/user_id_field"
+        <TextView
+            android:id="@+id/logFile"
             android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:gravity="center"
-            android:hint="Type in your user ID"
-            android:textSize="13sp"
-            android:textStyle="italic" />
+            android:layout_height="250dip"
+            android:layout_alignParentTop="true"
+            android:hint="Preference Record"
+            android:background="@color/colorPrimaryDark"
+            android:scrollbars="vertical" />
 
-        <Button
-            android:id="@+id/set_id_button"
+        <LinearLayout
+            android:id="@+id/user_id_layout"
             android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:gravity="center"
-            android:text="Set User ID"
-            android:textSize="13sp" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:padding="20dip"
+            android:layout_below="@+id/logFile"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/user_id_layout"
-        android:orientation="vertical">
+            <EditText
+                android:id="@+id/user_id_field"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:gravity="center"
+                android:hint="Type in your user ID"
+                android:textSize="13sp"
+                android:textStyle="italic" />
 
-        <EditText
-            android:id="@+id/content_header_field"
+            <Button
+                android:id="@+id/set_id_button"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:gravity="center"
+                android:text="Set User ID"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="20dip"
             android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:gravity="center"
-            android:hint="Type in preference key"
-            android:textSize="13sp"
-            android:textStyle="italic" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_id_layout"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/content_field"
-            android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:gravity="center"
-            android:hint="Type in preference content"
-            android:textSize="13sp"
-            android:textStyle="italic" />
+            <EditText
+                android:id="@+id/content_header_field"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:gravity="center"
+                android:hint="Type in preference key"
+                android:textSize="13sp"
+                android:textStyle="italic" />
 
-        <Button
-            android:id="@+id/set_content_button"
-            android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:gravity="center"
-            android:text="Save"
-            android:textSize="13sp" />
+            <EditText
+                android:id="@+id/content_field"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:gravity="center"
+                android:hint="Type in preference content"
+                android:textSize="13sp"
+                android:textStyle="italic" />
 
-        <Button
-            android:id="@+id/remove_content_button"
-            android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:gravity="center"
-            android:text="Clear All Content"
-            android:textSize="13sp" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/set_content_button"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:gravity="center"
+                android:text="Save"
+                android:textSize="13sp" />
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/remove_content_button"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:gravity="center"
+                android:text="Clear All Content"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
