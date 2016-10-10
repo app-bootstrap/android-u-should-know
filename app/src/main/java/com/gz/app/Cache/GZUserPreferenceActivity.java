@@ -36,13 +36,9 @@ public class GZUserPreferenceActivity extends GABaseActivity {
         setContentView(R.layout.home_user_pref_demo);
         getSupportActionBar().setTitle("User Pref");
 
-        setUidButton = (Button) findViewById(R.id.set_id_button);
-        saveButton = (Button) findViewById(R.id.set_content_button);
-        clearContents = (Button) findViewById(R.id.remove_content_button);
-
-        setUidButton.setOnClickListener(onUIDChange);
-        saveButton.setOnClickListener(onPrefSave);
-        clearContents.setOnClickListener(onPrefRemove);
+        findViewById(R.id.set_id_button).setOnClickListener(onUIDChange);
+        findViewById(R.id.set_content_button).setOnClickListener(onPrefSave);
+        findViewById(R.id.remove_content_button).setOnClickListener(onPrefRemove);
 
         preferenceDisplayer = (TextView) findViewById(R.id.logFile);
 
@@ -51,6 +47,15 @@ public class GZUserPreferenceActivity extends GABaseActivity {
         preferenceContentField = (EditText) findViewById(R.id.content_field);
 
         updatePreferenceList();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void updatePreferenceList() {
@@ -88,13 +93,4 @@ public class GZUserPreferenceActivity extends GABaseActivity {
             updatePreferenceList();
         }
     };
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
