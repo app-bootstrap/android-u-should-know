@@ -28,6 +28,9 @@
             android:label="File browser"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name="com.gz.app.Cache.GZUserPreferenceActivity"
+            android:windowSoftInputMode="stateHidden"/>
+
         <!-- Google analytics solution  -->
 
         <!-- 1. Register AnalyticsReceiver and AnalyticsService to support background

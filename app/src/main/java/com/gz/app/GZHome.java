@@ -30,6 +30,7 @@ import com.gz.android_utils.misc.utils.GZToastManager;
 import com.gz.android_utils.ui.listview.GZListView;
 import com.gz.android_utils.ui.listview.GZListViewAdapter;
 import com.gz.android_utils.ui.popup.GZPopup;
+import com.gz.app.Cache.GZUserPreferenceActivity;
 import com.gz.app.fileBrowse.GZFileBrowserActivity;
 
 import java.util.ArrayList;
@@ -64,6 +65,11 @@ public class GZHome extends AppCompatActivity
                     GZToastManager.show("Redirect to file browser");
 
                     Intent intent = new Intent(GZHome.this, GZFileBrowserActivity.class);
+                    startActivity(intent);
+                } else if (data.title.equals("User Preference")) {
+                    // Jump to file browser
+
+                    Intent intent = new Intent(GZHome.this, GZUserPreferenceActivity.class);
                     startActivity(intent);
                 }
             }

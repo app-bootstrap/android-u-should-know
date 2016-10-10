@@ -142,13 +142,12 @@ public class GZFileBrowserActivity extends AppCompatActivity implements GZBrowse
 
     @Override
     public boolean onItemLongClick(GZBrowserViewItem.FileUnit fileUnit) {
-        if (fileUnit!= null && fileUnit.isDir) {
 
+        if (fileUnit!= null && fileUnit.isDir) {
             View view = getLayoutInflater().inflate(R.layout.home_performance_pop, null);
             TextView content = (TextView) view.findViewById(R.id.performance_popup_content);
             content.setText(fileUnit.getDescription());
             GZPopup.show(view, GZFileBrowserActivity.this, "Dir Info");
-
             return true;
         }
 
