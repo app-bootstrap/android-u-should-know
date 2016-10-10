@@ -19,7 +19,7 @@ public class GZApplication extends Application {
 
     /*Provide const updates, customize this const further */
     public static String ApplicationName = "GZ-Android-Common";
-    public static String ApplicationUserIdentifier = "N.A.";
+    public static String ApplicationUserIdentifier = "GZ-Android-Default-ID";
 
 
     /*Shared singleton instance */
@@ -44,7 +44,7 @@ public class GZApplication extends Application {
     public void onCreate() {
         super.onCreate();
         GZUILoop.getInstance().init();
-        GZApplication.application = new WeakReference<GZApplication>(this);
+        GZApplication.application = new WeakReference<>(this);
     }
 }
 

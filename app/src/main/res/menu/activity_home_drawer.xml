@@ -9,7 +9,7 @@
         <item
             android:id="@+id/nav_cache"
             android:icon="@drawable/ic_menu_image_cache"
-            android:title="Image Cache" />
+            android:title="Cache" />
         <item
             android:id="@+id/nav_concurrency"
             android:icon="@drawable/ic_menu_concurrency"

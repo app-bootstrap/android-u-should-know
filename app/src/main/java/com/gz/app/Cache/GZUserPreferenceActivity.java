@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.gz.android_utils.GZApplication;
 import com.gz.android_utils.R;
+import com.gz.android_utils.cache.GZBaseSharePreference;
 
 /**
  * created by Zhao Yue, at 10/10/16 - 11:31 AM
@@ -52,30 +54,43 @@ public class GZUserPreferenceActivity extends AppCompatActivity {
         userIDField = (EditText) findViewById(R.id.user_id_field);
         contentKeyField = (EditText) findViewById(R.id.content_header_field);
         preferenceContentField = (EditText) findViewById(R.id.content_field);
+
+        updatePreferenceList();
     }
 
-    private void updatePreferenceList () {
-
+    private void updatePreferenceList() {
+        preferenceDisplayer.setText(GZApplication.ApplicationUserIdentifier + "\n" + GZBaseSharePreference.sharedInstance().getDescription());
     }
 
     private View.OnClickListener onUIDChange = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            GZBaseSharePreference.sharedInstance().reset();
+            GZApplication.ApplicationUserIdentifier = userIDField.getText().toString();
+            updatePreferenceList();
         }
     };
 
     private View.OnClickListener onPrefSave = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            String contentKey = contentKeyField.getText().toString();
+            String content = preferenceContentField.getText().toString();
 
+            if (content != null && contentKey != null) {
+                GZBaseSharePreference.sharedInstance()._setString(contentKey, content);
+                updatePreferenceList();
+                contentKeyField.getText().clear();
+                preferenceContentField.getText().clear();
+            }
         }
     };
 
     private View.OnClickListener onPrefRemove = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            GZBaseSharePreference.sharedInstance()._clear();
+            updatePreferenceList();
         }
     };
 

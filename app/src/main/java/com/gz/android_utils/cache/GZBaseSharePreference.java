@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 import com.gz.android_utils.GZApplication;
 
+import java.util.Map;
+
 /**
  * created by Zhao Yue, at 2/10/16 - 9:06 PM
  * for further issue, please contact: zhaoy.samuel@gmail.com
@@ -17,6 +19,7 @@ public class GZBaseSharePreference {
         if (m_instance == null) {
             synchronized (GZBaseSharePreference.class) {
                 m_instance = new GZBaseSharePreference();
+                m_instance.check();
             }
         }
         return m_instance;
@@ -101,5 +104,15 @@ public class GZBaseSharePreference {
         SharedPreferences.Editor editor = m_settings.edit();
         editor.clear();
         editor.apply();
+    }
+
+    public String getDescription() {
+        StringBuilder builder = new StringBuilder();
+        Map<String, ?> allEntries = m_settings.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            builder.append(entry.getKey()).append(":").append(entry.getValue().toString()).append("\n");
+        }
+
+        return builder.toString();
     }
 }
