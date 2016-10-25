@@ -1,0 +1,72 @@
+// ****** Tips1: Basic Ideas
+// Gradle Task Life Cycle: 1.initialization, 2.configuration, 3.execution
+task commonTask1
+
+// This declaration run during configuration phase of block
+// gradle -b build.gradle will invoke it
+commonTask1 {
+  println 'configuration block initialization'
+}
+
+// These two declaration run during execution
+// gradle -b build.gradle commonTask1 will invoke them
+commonTask1 << {
+  println 'execution component1'
+}
+
+commonTask1 << {
+  println 'execution component2'
+}
+
+commonTask1.doFirst
+{
+  println 'step 2'
+}
+commonTask1.doFirst
+{
+  println 'step 1'
+}
+
+commonTask1.doLast
+{
+  println 'step 3'
+}
+
+commonTask1.doLast
+{
+  println 'step 4'
+}
+
+
+
+// ****** Tips2: Dependency Declaration
+// Tasks are all objects, which we can provide basic ways of declaring dependencies
+task commonTask2 {
+
+}
+
+// Explicitly call the method on the task object task
+commonTask2.dependsOn commonTask1
+
+// A shortcut for dependencies only
+//commonTask2(dependsOn: [commonTask1])
+
+
+
+// ****** Tips3: Default task properties
+// a. check finish run successfully
+// tasks.compileJava.didWork
+
+// b. check whether a specific task is enabled
+// tasks.commonTask1.enabled
+
+// c. setting a description information
+// commonTask1.description = 'says hello to the world'
+
+// ****** Tips4: Gradle task Types: Copy, Jar
+task commonTask3(type: Copy) << {
+  // Where from, into, include is method provided by Copy task type
+  from 'resources'
+  into 'target'
+  include '**/*.xml', '**/*.txt', '**/*.properties'
+}

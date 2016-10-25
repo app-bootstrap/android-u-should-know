@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,15 +18,10 @@ import com.gz.android_utils.ui.GABaseActivity;
  */
 public class GZUserPreferenceActivity extends GABaseActivity {
 
-    private Button setUidButton;
-    private Button saveButton;
-    private Button clearContents;
-
     private EditText userIDField;
     private EditText contentKeyField;
     private EditText preferenceContentField;
-
-    private TextView preferenceDisplayer;
+    private TextView preferenceDisplay;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +34,7 @@ public class GZUserPreferenceActivity extends GABaseActivity {
         findViewById(R.id.set_content_button).setOnClickListener(onPrefSave);
         findViewById(R.id.remove_content_button).setOnClickListener(onPrefRemove);
 
-        preferenceDisplayer = (TextView) findViewById(R.id.logFile);
+        preferenceDisplay = (TextView) findViewById(R.id.logFile);
 
         userIDField = (EditText) findViewById(R.id.user_id_field);
         contentKeyField = (EditText) findViewById(R.id.content_header_field);
@@ -59,7 +53,7 @@ public class GZUserPreferenceActivity extends GABaseActivity {
     }
 
     private void updatePreferenceList() {
-        preferenceDisplayer.setText(GZApplication.ApplicationUserIdentifier + "\n" + GZBaseSharePreference.sharedInstance().getDescription());
+        preferenceDisplay.setText(GZApplication.ApplicationUserIdentifier + "\n" + GZBaseSharePreference.sharedInstance().getDescription());
     }
 
     private View.OnClickListener onUIDChange = new View.OnClickListener() {
