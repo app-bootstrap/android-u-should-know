@@ -81,3 +81,5 @@ commonTask4 {
   println 'execute sql task'
   sql = 'CREATE DATABASE IF NOT EXISTS example'
 }
+
+// ***** Tip6: Gradle provides powerful way to work with Ant ('there is a ant object which can execut ant command')
