@@ -85,9 +85,39 @@ commonTask4 {
 // Gradle & Ant can inject properties for each other; Gradle can import ant build file as a whole; Ant task can add dependency for gradle task
 
 
-// ***** Tips7: there are several properties which you can configure inside of the dependencies blocks
+// ***** Tips7: There are several properties which you can configure inside of the dependencies blocks
 task commonTask5(dependsOn: build) {
   configurations*.dependencies.each {println it}
 }
 
-// 
+// ***** Tips8: 'repositories' can be configed in multiple ways:
+
+/* Add a customized file structure as repo
+  add(new FileSystemResolver()) {
+    name = "repo"
+    addArtifactPattern("$rootDir/repo/[organization]/[module]-[revision].[ext]")
+    addIvyPattern("$rootDir/repo/[organization]/ivy-[module]-[revision].xml")
+    checkmodified = true
+  }
+*/
+
+/* Config mvn, ivy like repo and account name
+  ivy {
+    name = 'ivyRepo'
+    artifactPattern "http://repo.gradleware.org/[organisation]/[module]/ [revision]/[artifact]-[revision].[ext]"
+  }
+*/
+
+/* Simple compile a whole list of file dir
+  flatDir dirs: ['graphiclibs', guilibs']
+*/
+
+// ***** Tips9: Specify your own default tasks
+//Alternate approach 1
+//defaultTasks = ['clean', 'build']
+
+//Alternate approach 2
+//defaultTasks 'clean'
+
+//Approach 3
+//defaultTasks 'clean', 'build'
