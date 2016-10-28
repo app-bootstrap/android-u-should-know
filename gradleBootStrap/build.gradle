@@ -121,3 +121,6 @@ task commonTask5(dependsOn: build) {
 
 //Approach 3
 //defaultTasks 'clean', 'build'
+
+
+// ***** Tips10: Gradle can also be used to publish jar or aar to maven repo, also try using tool 'maven2gradle'
