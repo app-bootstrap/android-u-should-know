@@ -126,4 +126,10 @@ task commonTask5(dependsOn: build) {
 // ***** Tips10: Gradle can also be used to publish jar or aar to maven repo, also try using tool 'maven2gradle', understood meaning of buildScript
 
 // --------     Advanced Gradle Topics   ---------
-// ***** Tips11 File Operations: Copy, Filter , File(), Files(), FileTree(),
+// ***** Tips11 File Operations: Copy, Filter , File(), Files(), FileTree()
+/*
+  When programming with file collections, it might be tempting to think of them as static lists.
+  For example, a call to fileTree() might scan the filesystem at the time it is called, producing an immutable list that the build can then manipulate.
+  Immutable data struc‐ tures have their uses, but in the Gradle lifecycle, this would make file collections difficult to use.
+  As a result, instances of the FileCollection interface are lazily evaluated when‐ ever it is meaningful to do so
+*/
