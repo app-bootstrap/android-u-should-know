@@ -73,6 +73,7 @@ task commonTask3(type: Copy) << {
   include '**/*.xml', '**/*.txt', '**/*.properties'
 }
 
+
 // ***** Tips5: Create your own gradle type
 
 task commonTask4(type: MySqlTask)
@@ -80,6 +81,7 @@ task commonTask4(type: MySqlTask)
 commonTask4 {
   sql = 'CREATE DATABASE IF NOT EXISTS example'
 }
+
 
 // ***** Tips6: Gradle provides powerful way to work with Ant ('there is a ant object which can execut ant command')
 // Gradle & Ant can inject properties for each other; Gradle can import ant build file as a whole; Ant task can add dependency for gradle task
@@ -89,6 +91,7 @@ commonTask4 {
 task commonTask5(dependsOn: build) {
   configurations*.dependencies.each {println it}
 }
+
 
 // ***** Tips8: 'repositories' can be configed in multiple ways:
 
@@ -112,6 +115,7 @@ task commonTask5(dependsOn: build) {
   flatDir dirs: ['graphiclibs', guilibs']
 */
 
+
 // ***** Tips9: Specify your own default tasks
 //Alternate approach 1
 //defaultTasks = ['clean', 'build']
@@ -125,11 +129,17 @@ task commonTask5(dependsOn: build) {
 
 // ***** Tips10: Gradle can also be used to publish jar or aar to maven repo, also try using tool 'maven2gradle', understood meaning of buildScript
 
+
 // --------     Advanced Gradle Topics   ---------
+
+
 // ***** Tips11 File Operations: Copy, Filter , File(), Files(), FileTree()
 /*
   When programming with file collections, it might be tempting to think of them as static lists.
   For example, a call to fileTree() might scan the filesystem at the time it is called, producing an immutable list that the build can then manipulate.
   Immutable data struc‐ tures have their uses, but in the Gradle lifecycle, this would make file collections difficult to use.
-  As a result, instances of the FileCollection interface are lazily evaluated when‐ ever it is meaningful to do so
+  As a result, instances of the FileCollection interface are lazily evaluated when‐ ever it is meaningful to do so.
 */
+
+
+// ***** Tips12 Config your own customized plugin
