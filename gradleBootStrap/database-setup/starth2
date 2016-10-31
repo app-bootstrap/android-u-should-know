@@ -1,1 +1,0 @@
-java -cp /Users/Gangdooz/private/android/Android-CommonUtils/gradleBootStrap/database-setup/build/classes/main:/Users/Gangdooz/private/android/Android-CommonUtils/gradleBootStrap/database-setup/build/resources/main:/Users/Gangdooz/.gradle/caches/modules-2/files-2.1/com.h2database/h2/1.3.153/57bd2633c363d9309fb10de28b15dad0e24dc251/h2-1.3.153.jar org.h2.tools.Server
