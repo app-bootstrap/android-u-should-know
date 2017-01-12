@@ -59,21 +59,23 @@ public class GZFileBrowserActivity extends GABaseActivity implements GZBrowserVi
                 path = intent.getStringExtra("folder_path");
 
                 if (path == null) {
-                    path = Environment.getExternalStorageDirectory().getAbsolutePath();
+                    path = Environment.getRootDirectory().getAbsolutePath();
                 }
 
                 final File[] files = GZPathManager.sharedInstance().browseFilesInDir(new File(path));
 
-                for (File file : files) {
-                    GZBrowserViewItem.FileUnit unit = new GZBrowserViewItem.FileUnit();
-                    unit.isDir = file.isDirectory();
-                    unit.filePath = file.getAbsolutePath();
-                    unit.size = file.getTotalSpace();
-                    unit.name = file.getName();
-                    GZBrowserViewItem item = new GZBrowserViewItem(unit);
-                    item.listener = GZFileBrowserActivity.this;
-                    fileUnits.add(item);
-                    GZAppLogger.i("Check about file name :%s  with size %d", unit.name, unit.size);
+                if (files != null) {
+                    for (File file : files) {
+                        GZBrowserViewItem.FileUnit unit = new GZBrowserViewItem.FileUnit();
+                        unit.isDir = file.isDirectory();
+                        unit.filePath = file.getAbsolutePath();
+                        unit.size = file.getTotalSpace();
+                        unit.name = file.getName();
+                        GZBrowserViewItem item = new GZBrowserViewItem(unit);
+                        item.listener = GZFileBrowserActivity.this;
+                        fileUnits.add(item);
+                        GZAppLogger.i("Check about file name :%s  with size %d", unit.name, unit.size);
+                    }
                 }
 
                 // After initialization, finish the current configuration with the corresponding recycler view

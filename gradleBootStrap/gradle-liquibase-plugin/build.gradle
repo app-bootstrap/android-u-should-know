@@ -6,7 +6,7 @@ version = '0.7-SNAPSHOT'
 group = 'com.augusttechgroup'
 def artifact = 'gradle-liquibase-plugin'
 
-configurations { 
+configurations {
   deployment
   published.extendsFrom archives, signatures
 }
@@ -28,7 +28,7 @@ jar {
   baseName = artifact
 }
 
-task wrapper(type: Wrapper) { 
+task wrapper(type: Wrapper) {
   gradleVersion = '1.0'
 }
 
@@ -48,7 +48,7 @@ task groovydocJar(type: Jar, dependsOn: groovydoc) {
   from fileTree(groovydoc.destinationDir)
 }
 
-artifacts { 
+artifacts {
   archives groovydocJar, sourceJar
 }
 
@@ -71,7 +71,7 @@ uploadPublished {
       signPom(deployment)
     }
     name = 'mavenCentralReleaseDeployer'
-    repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") { 
+    repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
       authentication(userName: mavenCentralUsername, password: mavenCentralPassword)
       releases(updatePolicy: 'always')
       snapshots(updatePolicy: 'never')
@@ -87,7 +87,7 @@ uploadPublished {
 // A single place to create the POM configuration, so it can be
 // applied from the install and the upload tasks.
 //
-def getPomConfiguration() { 
+def getPomConfiguration() {
   return {
     name('Gradle Liquibase Plugin')
     description('A Gradle plugin for the Liquibase database refactoring tool.')
@@ -113,4 +113,3 @@ def getPomConfiguration() {
     }
   }
 }
-

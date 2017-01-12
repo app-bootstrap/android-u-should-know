@@ -25,17 +25,21 @@ public class GABaseActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Drawable drawable = getResources().getDrawable(android.R.drawable.ic_input_delete);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(drawable);
-
         // Check permissions
         permissions = getIntent().getStringArrayExtra(RunTimePerssionCheck);
 
         if (permissions != null) {
             ActivityCompat.requestPermissions(this, permissions, 0);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Drawable drawable = getResources().getDrawable(android.R.drawable.ic_input_delete);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
     }
 
     @Override
