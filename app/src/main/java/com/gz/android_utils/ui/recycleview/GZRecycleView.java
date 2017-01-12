@@ -28,6 +28,4 @@ public class GZRecycleView extends RecyclerView{
     // 1. Recycler.Adapter          - > Effective Source Control
     // 2. Recycler.LayoutManager    - > Animation Optimization & Performance Imrpovements
 
-
-
 }
